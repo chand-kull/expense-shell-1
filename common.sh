@@ -15,15 +15,6 @@ G="\e[32m"
 N="\e[0m"
 echo "please enter DB password:"
 read -s mysql_root_password
-VALIDATE() {
-   if [ $1 -ne 0 ]
-   then 
-      echo "$2..FAILURE"
-      exit 1
-   else
-    echo "$2 ...SUCCESS"
-   fi
-}
 
 check_root(){
 if [ $USERID  -ne 0 ]
