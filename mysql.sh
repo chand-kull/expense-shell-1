@@ -1,19 +1,26 @@
 #!/bin/bash
+set -e 
+
+handle_error(){
+    echo "Failed at  line no $1: error command is $2"
+ }
+
+ trap 'handle error ${LINENO} "$BASH_COMMAND"' ERR 
 source ./common.sh
 
 check_root
 
- echo "please enter DB password:"
- read  -s mysql_root_password
+echo "please enter DB password:"
+read  -s mysql_root_password
 
-dnf install mysql-server -y &>>$LOGFILE
-VALIDATE $? "installing mysql-server"
+dnf install mysql-servedddr -y &>>$LOGFILE
+# VALIDATE $? "installing mysql-server"
 
-systemctl enable mysqld
-VALIDATE $? "enabling mysql server" &>>$LOGFILE
+systemctl enable mysqld &>>$LOGFILE
+# VALIDATE $? "enabling mysql server" 
 
-systemctl start mysqld
-VALIDATE $? "starting mysql" &>>$LOGFILE
+systemctl start mysqld &>>$LOGFILE
+# VALIDATE $? "starting mysql" 
 
 # mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOGFILE
 # VALIDATE $? "settingup root password"

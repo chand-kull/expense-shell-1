@@ -1,13 +1,9 @@
 
+#!/bin/bash
+source ./common.sh
 
+check_root
 
-if [ $USERID  -ne 0 ]
-then 
- echo "please run this script with super user"
- exit 1 
-else 
- echo "you are a super user"
-fi
 dnf module disable nodejs -y &>>$LOGFILE
 VALIDATE $? "disabling nodejs"
 
