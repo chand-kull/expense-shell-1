@@ -1,4 +1,11 @@
 #!/bin/bash
+set -e
+handle_error(){
+  echo "error line no $1: error command is $2"
+ }
+
+ trap 'handle error ${LINENO} "$BASH_COMMAND"' ERR 
+
 USERID=$(id -u) 
 TIMESTAMP=$(date +%F-%H-%M-%S) # to check time
 SCRIPT_NAME=$(echo $0 | cut -d "." -f1) #script name

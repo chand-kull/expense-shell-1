@@ -1,13 +1,5 @@
 #!/bin/bash
-set -e 
-
-handle_error(){
-    echo "Failed at  line no $1: error command is $2"
- }
-
- trap 'handle error ${LINENO} "$BASH_COMMAND"' ERR 
 source ./common.sh
-
 check_root
 
 echo "please enter DB password:"
