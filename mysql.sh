@@ -5,17 +5,11 @@ check_root
 echo "please enter DB password:"
 read  -s mysql_root_password
 
-dnf install mysql-servedddr -y &>>$LOGFILE
-# VALIDATE $? "installing mysql-server"
+dnf install mysql-server -y &>>$LOGFILE
 
 systemctl enable mysqld &>>$LOGFILE
-# VALIDATE $? "enabling mysql server" 
 
 systemctl start mysqld &>>$LOGFILE
-# VALIDATE $? "starting mysql" 
-
-# mysql_secure_installation --set-root-pass ExpenseApp@1 &>>$LOGFILE
-# VALIDATE $? "settingup root password"
 
 #below code will seful for idempotent nature
 mysql -h db.zarasolutions.shop -uroot -p ${mysql_root_password} -e 'show databases;' &>>$LOGFILE
